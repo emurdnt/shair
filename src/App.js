@@ -1,24 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+
+import useApplicationData from "./hooks/UseApplicationData";
+import Filter from "./components/Filter";
+import Result from "./components/Result";
+
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+
+
+const App = () => {
+
+  const {
+    state,
+    // setResult,
+    setManufacturerAndTypes,
+    setCarType,
+    setYear,
+    filterResults
+    //need a method to call API here
+  } = useApplicationData();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <img
+          className="sidebar--centered"
+          src="images/logo.png"
+          alt="Shair Your Car"
+        />
+      </Grid>
+      <Grid item  sm={12} md={12}>
+        <Container maxWidth="md">
+          <Filter
+            manufacturers = {state.manufacturers}
+            types = {state.types}
+            setManufacturerAndTypes = {setManufacturerAndTypes}
+            setCarType = {setCarType}
+            setYear = {setYear}
+            filterResults = {filterResults}
+            //send method to call API to filter when the search is clicked
+          />
+        </Container>
+      </Grid>
+      <Grid item  sm={12} md={12}>
+        <Container maxWidth="md">
+          <Result results = {state.results}/>
+        </Container>
+      </Grid>
+    </Grid>
+  </main>
+   
   );
 }
 
