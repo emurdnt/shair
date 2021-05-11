@@ -1,9 +1,6 @@
 {
   "name": "shair",
   "version": "0.1.0",
-  // "engines": {
-  //   "node": "10.15.2"
-  // },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
