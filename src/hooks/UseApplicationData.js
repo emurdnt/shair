@@ -41,21 +41,27 @@ const useApplicationData = () => {
 
 
   const filterResults = () => {
-    let apiUrl = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/'
+    console.log(state);
+
+    let apiUrl = 'https://vpic.nhtsa.dot.gov/api'
 
     if(state.selectedManufacturer !== '' && state.selectedCarType === '' && state.selectedYear === ''){
-      apiUrl += `${state.selectedManufacturer}`;
-    } else if (state.selectedManufacturer !== '' && (state.selectedCarType === '' || state.selectedYear === '')){
-      apiUrl += `make/${state.selectedManufacturer}`;
+
+      apiUrl += `/vehicles/GetModelsForMake/${state.selectedManufacturer}`;
+
+    } else if (state.selectedManufacturer !== '' && (state.selectedCarType !== '' || state.selectedYear !== '')){
+
+      apiUrl += `/vehicles/GetModelsForMakeYear/make/${state.selectedManufacturer}`;
+
     }
 
      //what if they wanna reset?
-    // if(state.selectedYear !== ''){
-    //   apiUrl += `/modelYear/${state.selectedYear}`
-    // }
+    if(state.selectedYear !== ''){
+      apiUrl += `/modelYear/${state.selectedYear}`
+    }
 
     if(state.selectedCarType !== ''){
-      apiUrl += `/vehicleType/${state.selectedCarType}`
+      apiUrl += `/vehicletype/${state.selectedCarType}`
     }
 
     //handle if there are no results?
