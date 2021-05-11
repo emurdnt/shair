@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import AutoComplete from '@material-ui/lab/AutoComplete';
+import AutoComplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
 import YearSlider from './filter-components/Slider';
 
