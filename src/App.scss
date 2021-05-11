@@ -2,13 +2,6 @@
 
 .hero{
   position:relative;
- 
-  // .overlay{
-  //   width: 100vw;
-  //   height: 99%;
-  //   background: black;
-  //   overflow: hidden;
-  // }
 
   .menu{
     position:absolute;
@@ -24,7 +17,7 @@
     position: absolute;
     color:#fff;
     top: 20%;
-    left: 10%;
+    left:10%;
     margin: 50px;
   
     .tagline{
@@ -35,19 +28,34 @@
 
     p{
       width: 30%;
-      //do media query here
+      @media only screen and (max-width: 960px) {
+        width: 50%;
+      }
+      @media only screen and (max-width: 720px) {
+        width: 100%;
+      }
     }
 
-    //media query here
+    @media only screen and (max-width: 960px) {
+      top: 10%;
+      left: 5%;
+    }
+
+    @media only screen and (max-width: 720px) {
+      top: 5%;
+      left: 0;
+    }
+
+    @media only screen and (max-width: 480px) {
+      display: none;
+    }
+  
   }
 
   img{
     max-width: 100%; 
     height: auto;
-    // object-fit: cover;
-    // opacity: 0.4;
   }
   
-
 
 }

@@ -3,25 +3,54 @@ import hero from './assets/hero.jpg'
 import logo from './assets/logo.png'
 
 import useApplicationData from "./hooks/UseApplicationData";
+import useVisualMode from "./hooks/UserVisualMode";
 import Filter from "./components/Filter";
 import Result from "./components/Result";
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
-
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
+const LOADING = "SAVING";
+const ERROR_FETCH = "ERROR_FETCH";
 
 const App = () => {
 
   const {
     state,
-    // setResult,
     setManufacturerAndTypes,
     setCarType,
     setYear,
     filterResults
     //need a method to call API here
   } = useApplicationData();
+
+  const { mode, transition} = useVisualMode(
+    state.results ? SHOW : EMPTY
+  );
+
+
+  const onSearch = () => {
+    console.log("here in onSearch");
+    transition(LOADING);
+
+    filterResults()
+      .then((response) => {
+        if(!response){
+          transition(EMPTY)
+        } else {
+          transition(SHOW)
+        }
+      })
+      .catch((error) => transition(ERROR_FETCH))
+    
+  
+    // props
+    //   .bookInterview(props.id, interview)
+    //   .then(() => transition(SHOW))
+    //   .catch((error) => transition(ERROR_SAVE, true));
+  }
 
   return (
     <main>
@@ -31,7 +60,7 @@ const App = () => {
           <img src={logo} alt="Shair logo"/>
         </div>
         <div className="hero-heading">
-          <p className="tagline">How Much Money Can Your Car Make?</p>
+          <p className="tagline">Search Our Car Inventory</p>
           <p>SHAiR is the online car sharing platform that empowers vehicle owners to put their car to work for them and take charge of their financial well-being.</p>
         </div>
         <div className="overlay">
@@ -49,14 +78,18 @@ const App = () => {
             setManufacturerAndTypes = {setManufacturerAndTypes}
             setCarType = {setCarType}
             setYear = {setYear}
-            filterResults = {filterResults}
+            // filterResults = {filterResults}
+            onSearch = {onSearch}
             //send method to call API to filter when the search is clicked
           />
         </Container>
       </Grid>
       <Grid item  sm={12} md={12}>
         <Container maxWidth="md">
-          <Result results = {state.results}/>
+          <Result 
+          results = {state.results}
+          mode = {mode}
+        />
         </Container>
       </Grid>
     </Grid>
