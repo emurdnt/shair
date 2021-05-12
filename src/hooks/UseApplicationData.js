@@ -75,12 +75,8 @@ const useApplicationData = () => {
         return response;
       })
       .catch((error) => {
-        console.log("Error:", error);
         return error;
       });
-
-      console.log("state", state);
-      console.log("api URL",apiUrl);
 
     return promise;
     
