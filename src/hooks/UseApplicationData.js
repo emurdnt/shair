@@ -78,6 +78,8 @@ const useApplicationData = () => {
         return error;
       });
 
+      console.log(apiUrl);
+      console.log(state);
     return promise;
     
   };

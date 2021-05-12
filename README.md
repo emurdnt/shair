@@ -21,7 +21,7 @@ Check out [https://shair-your-car.herokuapp.com/](this link) to see the deployed
 * The overview of the app. I have chosen to make my app almost a part of the existing Shair Web App. I thought that it made sense to follow the styling, look and feel of the site.*
 
 ![filter and result area](https://github.com/emurdnt/shair/blob/main/src/assets/filter-result-area.png)
-* This is the filter and result section. The user can filter using the car make, type and year.The these sections rely on Material UI's grid system to respond to different media queries.*
+* This is the filter and result section. The user can filter using the car make, type and year.The these sections rely on Material UI's grid system to respond to different media queries. I added a result count.*
 
 ![Autocomplete filters](https://github.com/emurdnt/shair/blob/main/src/assets/auto-complete-filters.png)
 * I have decided to make the filters use the `Autocomplete` component because there are more than 10 choices for car makers alone. It will be easier for the user to type what they are specifically looking for to narrow the choices down.*
@@ -44,5 +44,7 @@ The app is responsive so please check it out on mobile!
 ## Challenges, More Ideas, etc
 
 I honestly would love to implement the menu popping down when you scroll that is currently on the Shair Web App. Due to the time constraints, I decided to forego that functionality. I have also started implementing the slider for the year. It is working but I ran into the challenge of distinguishing if the slider is in the default value or if it is actually a part of the query.
+
+If I had more time, I would also create automated tests using Cypress and Jest.
 
 Although the bulk of my experience is with Angular and RxJs. I found this project to be fun and a good learning experience.
