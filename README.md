@@ -7,7 +7,7 @@ Run `npm i` to install the necessary packages and dependencies.
 Run `npm start` in your console and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Deployed App
-Check out [this link](https://shair-your-car.herokuapp.com/) to see the deployed version of my app.
+Check out [this link](https://shair-your-car.herokuapp.com/) to see the deployed version of my app on Heroku.
 
 ## Additional Libraries Used
 
