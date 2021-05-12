@@ -78,15 +78,13 @@ const useApplicationData = () => {
         return error;
       });
 
-      console.log(apiUrl);
-      console.log(state);
     return promise;
     
   };
 
   const setManufacturerAndTypes = (value) => {
     const types = value ? value.VehicleTypes : [];
-    const manufacturer = value.Mfr_CommonName ? value.Mfr_CommonName.replace(/\s+/g, '').toLowerCase() :'';
+    const manufacturer = value?.Mfr_CommonName ? value.Mfr_CommonName.replace(/\s+/g, '').toLowerCase() :'';
 
     dispatch({
       type: SET_CAR_TYPES,
