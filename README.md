@@ -6,6 +6,9 @@ Run `npm i` to install the necessary packages and dependencies.
 
 Run `npm start` in your console and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+## Deployed App
+Check out [https://shair-your-car.herokuapp.com/](this link) to see the deployed version of my app.
+
 ## Additional Libraries Used
 
   - "@material-ui/core" - I chose to use Material UI's ready-made components, grid system and typography for this project.
