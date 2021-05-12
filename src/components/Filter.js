@@ -1,4 +1,5 @@
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import AutoComplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
@@ -8,7 +9,14 @@ import '../styles/filter.scss'
 
 const Filter = (props) => {
   return (
-    <form  onSubmit={props.onSearch} >
+    <form  onSubmit={props.onSearch} className="filter">
+      <Grid>
+        <Grid item  sm={12} md={12} >
+          <Typography color="textPrimary" className = "heading">
+            Search Our Car Inventory
+          </Typography>
+        </Grid>
+      </Grid>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={12} md={3}>
           <AutoComplete

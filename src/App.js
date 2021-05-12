@@ -10,6 +10,7 @@ import Result from "./components/Result";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
+
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const LOADING = "SAVING";
@@ -50,44 +51,44 @@ const App = () => {
 
   return (
     <main>
-    <Grid container spacing={3}>
-      <Grid item xs={12} className="hero">
-        <div className="menu">
-          <img src={logo} alt="Shair logo"/>
-        </div>
-        <div className="hero-heading">
-          <p className="tagline">Search Our Car Inventory</p>
-          <p>SHAiR is the online car sharing platform that empowers vehicle owners to put their car to work for them and take charge of their financial well-being.</p>
-        </div>
-        <div className="overlay">
-          <img
-            src= {hero}
-            alt="Shair Your Car"
+      <Grid container spacing={3}>
+        <Grid item xs={12} className="hero">
+          <div className="menu">
+            <img src={logo} alt="Shair logo"/>
+          </div>
+          <div className="hero-heading">
+            <p className="tagline">Search Our Car Inventory</p>
+            <p>SHAiR is the online car sharing platform that empowers vehicle owners to put their car to work for them and take charge of their financial well-being.</p>
+          </div>
+          <div className="overlay">
+            <img
+              src= {hero}
+              alt="Shair Your Car"
+            />
+          </div>
+        </Grid>
+        <Grid item  sm={12} md={12}>
+          <Container maxWidth="md">
+            <Filter
+              manufacturers = {state.manufacturers}
+              types = {state.types}
+              setManufacturerAndTypes = {setManufacturerAndTypes}
+              setCarType = {setCarType}
+              setYear = {setYear}
+              onSearch = {onSearch}
+            />
+          </Container>
+        </Grid>
+        <Grid item  sm={12} md={12}>
+          <Container maxWidth="md">
+            <Result 
+            results = {state.results}
+            mode = {mode}
           />
-        </div>
+          </Container>
+        </Grid>
       </Grid>
-      <Grid item  sm={12} md={12}>
-        <Container maxWidth="md">
-          <Filter
-            manufacturers = {state.manufacturers}
-            types = {state.types}
-            setManufacturerAndTypes = {setManufacturerAndTypes}
-            setCarType = {setCarType}
-            setYear = {setYear}
-            onSearch = {onSearch}
-          />
-        </Container>
-      </Grid>
-      <Grid item  sm={12} md={12}>
-        <Container maxWidth="md">
-          <Result 
-          results = {state.results}
-          mode = {mode}
-        />
-        </Container>
-      </Grid>
-    </Grid>
-  </main>
+    </main>
    
   );
 }
