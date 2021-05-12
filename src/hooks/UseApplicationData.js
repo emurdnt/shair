@@ -79,13 +79,16 @@ const useApplicationData = () => {
         return error;
       });
 
+      console.log("state", state);
+      console.log("api URL",apiUrl);
+
     return promise;
     
   };
 
   const setManufacturerAndTypes = (value) => {
     const types = value ? value.VehicleTypes : [];
-    const manufacturer = value ? value.Mfr_CommonName.replace(/\s+/g, '').toLowerCase() :'';
+    const manufacturer = value.Mfr_CommonName ? value.Mfr_CommonName.replace(/\s+/g, '').toLowerCase() :'';
 
     dispatch({
       type: SET_CAR_TYPES,
@@ -107,10 +110,10 @@ const useApplicationData = () => {
   }
 
   const setYear = (value) => {
-    console.log("from hook", value);
+    const year = value ? value.value : '';
     dispatch ({
       type: SET_SELECTED_YEAR,
-      value
+      year
     })
   }
 

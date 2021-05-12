@@ -28,8 +28,8 @@ const reducer = (state, action) => {
       return {...state, selectedCarType: selectedCarType }
 
     case SET_SELECTED_YEAR:
-      const {value} =  action;
-      return {...state, selectedYear: value }
+      const {year} =  action;
+      return {...state, selectedYear: year }
     
     case FILTER_RESULTS: 
       const {filteredResult} = action;
