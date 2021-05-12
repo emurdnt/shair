@@ -2,12 +2,12 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import AutoComplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
-import YearSlider from './filter-components/Slider';
+import generateYears from '../helpers/Utilities';
+
 
 const Filter = (props) => {
   return (
-    //think about what will happen if they hit enter
-    <form  onSubmit={(event) => event.preventDefault()} >
+    <form  onSubmit={props.onSearch} >
       <Grid container spacing={4}>
         <Grid item xs={12} sm={12} md={3}>
           <AutoComplete
@@ -28,16 +28,22 @@ const Filter = (props) => {
           />
         </Grid>
         <Grid item  xs={12} sm={12} md={3}>
-          <YearSlider
+          {/* <YearSlider
             id="year"
             setYear = {props.setYear}
-          ></YearSlider>
+          ></YearSlider> */}
+          <AutoComplete
+            id="types"
+            options={generateYears(2000)}
+            getOptionLabel={(option) => option.value}
+            onChange={(e, value) => props.setYear(value)}
+            renderInput={(params) => <TextField {...params} label="Year" variant="outlined" />}
+          />
         </Grid>
         <Grid item xs={12} sm={12} md={3}>
           <Button 
             type="submit"
             variant="contained" 
-            onClick={props.onSearch}
           >Search Cars</Button>
         </Grid>
       </Grid>

@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+/**
+ * A custom hook to set the mode a component is on.
+ * @param {string} initial - initial mode of the component
+ * @returns {mode, transition, back}
+ */
+
 const useVisualMode = (initial) => {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);

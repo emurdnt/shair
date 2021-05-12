@@ -13,7 +13,6 @@ const Status = (props) => {
     className="result-container__status">
     <Grid item  sm={12} md={12} >
        <img
-        // className="status-image"
         src={load}
         alt="Loading"
       />

@@ -2,7 +2,6 @@ import { useReducer, useEffect } from "react";
 import axios from "axios";
 import {
   reducer,
-  SET_RESULTS,
   SET_APPLICATION_DATA,
   FILTER_RESULTS,
   SET_CAR_TYPES,
@@ -10,6 +9,11 @@ import {
   SET_SELECTED_CAR_TYPE,
   SET_SELECTED_YEAR
 } from "../reducer/ApplicationReducer";
+
+/**
+ * Custom hook to manage the state better.
+ * @returns 
+ */
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, {
@@ -21,14 +25,13 @@ const useApplicationData = () => {
     selectedYear:''
   });
 
-  // RETRIEVES API AND SETS IT WITH REDUCER
+  // RETRIEVES INITIAL APP DATA AND SETS IT WITH REDUCER
   useEffect(() => {
     Promise.all([
       axios.get("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllManufacturers?format=json"),
       axios.get("https://vpic.nhtsa.dot.gov/api//vehicles/GetModelsForMake/honda?format=json"),
      
     ]).then((all) => {
-      // console.log("all from applicatin data hook: ", all);
       const manufacturers = all[0].data["Results"];
       const results = all[1].data["Results"];
       dispatch({
@@ -41,7 +44,6 @@ const useApplicationData = () => {
 
 
   const filterResults = () => {
-    console.log(state);
 
     let apiUrl = 'https://vpic.nhtsa.dot.gov/api'
 
@@ -55,7 +57,6 @@ const useApplicationData = () => {
 
     }
 
-     //what if they wanna reset?
     if(state.selectedYear !== ''){
       apiUrl += `/modelYear/${state.selectedYear}`
     }
@@ -64,22 +65,19 @@ const useApplicationData = () => {
       apiUrl += `/vehicletype/${state.selectedCarType}`
     }
 
-    //handle if there are no results?
-    //what if there are errors?
-    // console.log(apiUrl);
-    const promise = axios
-    .get(`${apiUrl}?format=json`)
-    .then((response) => {
-      const filteredResult = response.data.Results;
-      // console.log("response in likes hook: ", response);
-      dispatch({
-        type: FILTER_RESULTS,
-        filteredResult
+    const promise = axios.get(`${apiUrl}?format=json`)
+      .then((response) => {
+        const filteredResult = response.data.Results;
+        dispatch({
+          type: FILTER_RESULTS,
+          filteredResult
+        });
+        return response;
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+        return error;
       });
-    })
-    .catch((error) => {
-      console.log("I don't *like* this mess", error);
-    });
 
     return promise;
     
@@ -101,7 +99,6 @@ const useApplicationData = () => {
   }
 
   const setCarType = (value) => {
-    //I could make a utility function for this
     const selectedCarType = value ? value.Name.replace(/\s+/g, '').toLowerCase() : '';
     dispatch({
       type: SET_SELECTED_CAR_TYPE,
@@ -110,7 +107,7 @@ const useApplicationData = () => {
   }
 
   const setYear = (value) => {
-    console.log(setYear);
+    console.log("from hook", value);
     dispatch ({
       type: SET_SELECTED_YEAR,
       value

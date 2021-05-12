@@ -23,7 +23,6 @@ const App = () => {
     setCarType,
     setYear,
     filterResults
-    //need a method to call API here
   } = useApplicationData();
 
   const { mode, transition} = useVisualMode(
@@ -31,25 +30,22 @@ const App = () => {
   );
 
 
-  const onSearch = () => {
-    console.log("here in onSearch");
+  const onSearch = (e) => {
+    e.preventDefault();
     transition(LOADING);
 
     filterResults()
       .then((response) => {
-        if(!response){
+
+        if(response.data.Count < 1){
           transition(EMPTY)
         } else {
           transition(SHOW)
         }
+
       })
       .catch((error) => transition(ERROR_FETCH))
-    
-  
-    // props
-    //   .bookInterview(props.id, interview)
-    //   .then(() => transition(SHOW))
-    //   .catch((error) => transition(ERROR_SAVE, true));
+
   }
 
   return (
@@ -78,9 +74,7 @@ const App = () => {
             setManufacturerAndTypes = {setManufacturerAndTypes}
             setCarType = {setCarType}
             setYear = {setYear}
-            // filterResults = {filterResults}
             onSearch = {onSearch}
-            //send method to call API to filter when the search is clicked
           />
         </Container>
       </Grid>

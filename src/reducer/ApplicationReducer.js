@@ -1,4 +1,3 @@
-const SET_RESULTS = "SET_RESULTS";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_CAR_TYPES = "SET_CAR_TYPES";
 const FILTER_RESULTS = "FILTER_RESULTS";
@@ -8,10 +7,6 @@ const SET_SELECTED_YEAR = "SET_SELECTED_YEAR";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_RESULTS: 
-      const { data } = action;
-      return { ...state, results: [...state.results, data] };
-
     case SET_APPLICATION_DATA:
       const {results, manufacturers} = action;
       return {
@@ -49,7 +44,6 @@ const reducer = (state, action) => {
 
 export {
   reducer,
-  SET_RESULTS,
   SET_APPLICATION_DATA,
   FILTER_RESULTS,
   SET_CAR_TYPES,
