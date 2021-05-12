@@ -14,4 +14,4 @@ Run `npm start` in your console and open [http://localhost:3000](http://localhos
   -  "node-sass" - I prefer to use .scss in styling.
 
 ##
-![app overview]('https://github.com/emurdnt/shair/blob/main/src/assets/app-overview.png')
+![app overview](https://github.com/emurdnt/shair/blob/main/src/assets/app-overview.png)
